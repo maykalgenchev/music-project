@@ -12,10 +12,10 @@ const Details = () => {
     const { songId } = useParams();
 
 
-
-
     useEffect(() => {
         songService.getOne(songId)
+
+
             .then(songResult => {
                 setSong(songResult);
                 setLikesCount(songResult.likes.length);

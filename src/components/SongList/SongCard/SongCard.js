@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const SongCard = ({
     song
 }) => {
-    console.log('Song: ', song)
 
     return (
         <div className="card p5" style={{ width: "13rem" }}>

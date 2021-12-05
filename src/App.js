@@ -13,6 +13,7 @@ import Details from './components/Details/Details.js';
 import Edit from './components/Edit/Edit.js';
 import MySongs from './components/MySongs/MySongs.js';
 import LikedSongs from './components/LikedSongs/LikedSongs.js';
+import Home from './components/Home/Home.js'
 
 
 const initialAuthState = {
@@ -39,6 +40,8 @@ function App() {
 
         <main id="site-content">
           <Routes>
+            <Route path="/" element={<Home />} />
+
             <Route path="/all-songs" element={<SongList />} />
             <Route path="/my-songs" element={<MySongs />} />
             <Route path="/create" element={<CreateSong />} />

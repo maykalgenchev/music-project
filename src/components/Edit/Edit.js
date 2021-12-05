@@ -35,6 +35,7 @@ const Edit = () => {
             description,
             type,
             imageUrl,
+            likes: song.likes,
             _ownerId: user._id,
             _id: songId
         }, user.accessToken).then(result => {

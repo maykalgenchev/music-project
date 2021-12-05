@@ -36,10 +36,11 @@ const Header = () => {
 
 
                 <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-
                     {user.email
                         ? <li className="nav-link px-2 link-dark">Welcome, {user.email}</li>
                         : ""}
+                    <li><Link to="/" className="nav-link px-2 link-dark" >Home</Link></li>
+
                     <li><Link to="/all-songs" className="nav-link px-2 link-dark" >All songs</Link></li>
                     {user.email
                         ? userNavigation
