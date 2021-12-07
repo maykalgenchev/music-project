@@ -54,8 +54,10 @@ function App() {
           </Routes>
         </main>
 
-        <footer id="site-footer">
-          <p>@SongWorld</p>
+        <footer>
+          <div className="d-flex justify-content-center border-top fixed-bottom">
+            <p>@SongWorld</p>
+          </div>
         </footer>
       </div>
     </AuthContext.Provider>

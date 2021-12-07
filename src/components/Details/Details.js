@@ -73,37 +73,70 @@ const Details = () => {
 
     const ownerButtons = (
         <>
-            <Link className="btn btn-primary" to={`/edit/${song._id}`}>Edit</Link>
-            <button className="btn btn-primary" onClick={deleteHandler}>Delete</button>
+            <Link className="btn btn-primary mx-2" to={`/edit/${song._id}`}>Edit</Link>
+            <button className="btn btn-danger mx-2" onClick={deleteHandler}>Delete</button>
         </>
     );
 
-    const likeButton = <Link className="btn btn-primary" to="/likes" onClick={likeHandler}>Like</Link>;
-    const dislikeButton = <Link className="btn btn-primary" to="/likes" onClick={dislikeHandler}>Dislike</Link>;
+    const likedButtons = (
+        <>
+            <div>
+                <p>You like this song?</p>
+
+            </div>
+            <div>
+                <Link className="btn btn-primary mx-2" to="/likes" onClick={likeHandler}>Like</Link>
+                <Link className="btn btn-danger disabled mx-2" to="/likes" onClick={dislikeHandler}>Dislike</Link>
+            </div>
+
+        </>
+    )
+
+
+    const dislikedButtons = (
+        <>
+            <div>
+                <p>You have already liked this song</p>
+            </div>
+            <div>
+                <Link className="btn btn-primary disabled mx-2" to="/likes" onClick={likeHandler}>Like</Link>
+                <Link className="btn btn-danger mx-2" to="/likes" onClick={dislikeHandler}>Dislike</Link>
+            </div>
+
+
+        </>
+    )
+
 
     return (
-        <section id="details-page" className="details">
-            <div className="pet-information">
+        <section id="details-page" className="d-flex justify-content-center">
+            <div>
                 <h3>Name: {song.name}</h3>
-                <p className="type">Type: {song.type}</p>
-                <p className="img"><img src={song.imageUrl} alt="Invalid imageUrl" /></p>
-                <div className="actions">
+                <p>Type: {song.type}</p>
+                <p><img src={song.imageUrl} alt="Invalid imageUrl" /></p>
+
+                <div className="d-flex justify-content-center my-3">
+                    <span id="total-likes">Likes: {likesCount} </span>
+                </div>
+                <div className="d-flex justify-content-center">
                     {user._id && (user._id === song._ownerId
                         ? ownerButtons
                         : songLiked
-                            ? dislikeButton
-                            : likeButton
+                            ? dislikedButtons
+                            : likedButtons
                     )}
 
-                    <div className="likes">
-                        <span id="total-likes">Likes: {likesCount} </span>
-                    </div>
+
+
+
+                </div>
+
+                <div className="my-2">
+                    <h3>Description:</h3>
+                    <p>{song.description}</p>
                 </div>
             </div>
-            <div className="pet-description">
-                <h3>Description:</h3>
-                <p>{song.description}</p>
-            </div>
+
         </section>
     );
 }

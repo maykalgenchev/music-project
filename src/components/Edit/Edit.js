@@ -44,30 +44,34 @@ const Edit = () => {
     }
 
     return (
-        <form method="POST" onSubmit={onSongEdit}>
-            <div className="form-group">
-                <label>Song name</label>
-                <input type="text" className="form-control" id="name" name="name" defaultValue={song.name} placeholder="Enter song name..." />
-            </div>
-            <div className="form-group">
-                <label>Song author</label>
-                <input type="text" className="form-control" id="author" name="author" defaultValue={song.author} placeholder="Enter song author..." />
-            </div>
-            <div className="form-group">
-                <label>Description</label>
-                <input type="text" className="form-control" id="description" name="description" defaultValue={song.description} placeholder="Enter description..." />
-            </div>
-            <div className="form-group">
-                <label>Type</label>
-                <input type="text" className="form-control" id="type" name="type" defaultValue={song.type} placeholder="Enter type..." />
-            </div>
-            <div className="form-group">
-                <label>Image Url</label>
-                <input type="text" className="form-control" id="imageUrl" name="imageUrl" defaultValue={song.imageUrl} placeholder="Enter imageUrl..." />
-            </div>
-
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </form>)
+        <div className="d-flex justify-content-center">
+            <form className="w-50" method="POST" onSubmit={onSongEdit}>
+                <div className="form-group my-2">
+                    <label>Song name</label>
+                    <input type="text" className="form-control" id="name" name="name" defaultValue={song.name} placeholder="Enter song name..." />
+                </div>
+                <div className="form-group my-2">
+                    <label>Song author</label>
+                    <input type="text" className="form-control" id="author" name="author" defaultValue={song.author} placeholder="Enter song author..." />
+                </div>
+                <div className="form-group my-2">
+                    <label>Description</label>
+                    <input type="text" className="form-control" id="description" name="description" defaultValue={song.description} placeholder="Enter description..." />
+                </div>
+                <div className="form-group my-2">
+                    <label>Type</label>
+                    <input type="text" className="form-control" id="type" name="type" defaultValue={song.type} placeholder="Enter type..." />
+                </div>
+                <div className="form-group">
+                    <label>Image Url</label>
+                    <input type="text" className="form-control" id="imageUrl" name="imageUrl" defaultValue={song.imageUrl} placeholder="Enter imageUrl..." />
+                </div>
+                <div className="d-flex justify-content-center my-3">
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    )
 
 
 

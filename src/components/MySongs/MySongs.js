@@ -19,7 +19,7 @@ const MySongs = () => {
 
 
     return (
-        <ul>
+        <ul className="d-inline-flex">
             {songs.filter(x => x._ownerId === user._id).map(x => <SongCard key={x._id} song={x} />)}
         </ul>
     )

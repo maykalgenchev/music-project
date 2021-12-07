@@ -7,10 +7,10 @@ const Header = () => {
     const { user } = useContext(AuthContext);
 
     let guestNavigation = (
-        <div id="guest" className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <div id="guest" className="nav col-12 col-md-auto mb-2 justify-content-right mb-md-0">
 
 
-            <div className="text-end">
+            <div className="position-absolute top-10 end-0">
                 <button type="button" className="btn btn-outline-primary me-2"><Link to="/login">Login</Link></button>
                 <button type="button" className="btn btn-outline-primary me-2"><Link to="/register">Sign-up</Link></button>
             </div>
@@ -29,8 +29,8 @@ const Header = () => {
         </div>
     );
     return (
-        <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 px-4 border-bottom">
-            <nav>
+        <header className="d-flex flex-wrap align-items-center row justify-content-md-center justify-content-md-between py-3 mb-4 px-4 border-bottom ">
+            <nav className="align-items-center">
                 <Link to="/" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none" />
                 <svg className="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"></svg>
 

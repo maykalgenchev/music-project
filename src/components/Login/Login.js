@@ -26,18 +26,28 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={onLoginHandler} method="POST">
-            <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" className="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input type="password" className="form-control" name="password" id="password" placeholder="Password" />
-            </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
+        <div className="d-flex justify-content-center">
+            <form className="w-50  " onSubmit={onLoginHandler} method="POST" >
+                <div className="form-group my-2">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+
+                    <input type="email" className="form-control form-control-mr-5" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+
+
+                <div className="form-group my-2">
+                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <input type="password" className="form-control mx-10" name="password" id="password" placeholder="Password" />
+
+                </div>
+
+                <div className="d-flex justify-content-center mx-5 my-3">
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
     )
 
 }

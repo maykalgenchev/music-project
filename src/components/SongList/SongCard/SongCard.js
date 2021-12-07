@@ -5,7 +5,7 @@ const SongCard = ({
 }) => {
 
     return (
-        <div className="card p5" style={{ width: "13rem" }}>
+        <div className="card mx-5" style={{ width: "13rem" }}>
             <img className="card-img-top" src={song.imageUrl} alt="Card cap" />
             <div className="card-body">
                 <h5 className="card-title">{song.name}</h5>
