@@ -3,16 +3,18 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import * as songService from '../../services/songService';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNotificationContext, types } from '../../contexts/NotificationContext';
+import DeleteConfirm from '../DeleteConfirm/DeleteConfirm';
 
 const Details = () => {
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
     const [song, setSong] = useState({});
     const [songLiked, setSongLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(0);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
     const { songId } = useParams();
     const { addNotification } = useNotificationContext();
-
+    const { user } = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -37,8 +39,17 @@ const Details = () => {
         songService.destroy(songId, user.accessToken)
             .then(() => {
                 navigate('/all-songs');
+            })
+            .finally(() => {
+                setShowDeleteDialog(false);
             });
     };
+
+    const deleteClickHandler = (e) => {
+        e.preventDefault();
+
+        setShowDeleteDialog(true);
+    }
 
     const likeHandler = (e) => {
         e.preventDefault();
@@ -81,7 +92,7 @@ const Details = () => {
     const ownerButtons = (
         <>
             <Link className="btn btn-primary mx-2" to={`/edit/${song._id}`}>Edit</Link>
-            <button className="btn btn-danger mx-2" onClick={deleteHandler}>Delete</button>
+            <button className="btn btn-danger mx-2" onClick={deleteClickHandler}>Delete</button>
         </>
     );
 
@@ -112,37 +123,40 @@ const Details = () => {
     )
 
     return (
-        <section id="details-page" className="d-flex justify-content-center ">
-            <div>
-                <h3>Name: {song.name}</h3>
-                <p>Type: {song.type}</p>
-                <p><img src={song.imageUrl} alt="Invalid imageUrl" /></p>
+        <>
+            <DeleteConfirm show={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} onSave={deleteHandler} />
+            <section id="details-page" className="d-flex justify-content-center ">
+                <div>
+                    <h3>Name: {song.name}</h3>
+                    <p>Type: {song.type}</p>
+                    <p><img src={song.imageUrl} alt="Invalid imageUrl" /></p>
 
-                <div className="d-flex justify-content-center my-3">
-                    <span id="total-likes">Likes: {likesCount} </span>
-                </div>
-                <div className="d-flex justify-content-center">
-                    {user._id && (user._id === song._ownerId
-                        ? ownerButtons
-                        : songLiked
-                            ? dislikedButtons
-                            : likedButtons
-                    )}
+                    <div className="d-flex justify-content-center my-3">
+                        <span id="total-likes">Likes: {likesCount} </span>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        {user._id && (user._id === song._ownerId
+                            ? ownerButtons
+                            : songLiked
+                                ? dislikedButtons
+                                : likedButtons
+                        )}
 
 
-                    <div className="my-2 position-absolute top-100 start-40">
-                        <div className="d-flex justify-content-center">
-                            <h3>Description:</h3>
+                        <div className="my-2 position-absolute top-100 start-40">
+                            <div className="d-flex justify-content-center">
+                                <h3>Description:</h3>
+                            </div>
+                            <p>{song.description}</p>
                         </div>
-                        <p>{song.description}</p>
+
                     </div>
 
+
                 </div>
 
-
-            </div>
-
-        </section>
+            </section>
+        </>
     );
 }
 
