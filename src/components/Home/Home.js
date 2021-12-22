@@ -14,19 +14,26 @@ const Home = () => {
     }, []);
 
 
-    let asd = songs.sort((a, b) => b.likes.length - a.likes.length).slice(0, 3);
+    let mostLiked = songs.sort((a, b) => b.likes.length - a.likes.length).slice(0, 3);
 
     return (
         <div>
-            <div className="d-flex justify-content-center mt-5 mb-3">
-                <p>Top 3 most liked songs:</p>
-            </div>
-            <div className="d-flex justify-content-center">
-                <ul className="position-center d-inline-flex">
-                    {asd.map(x => <SongCard key={x._id} song={x} />)}
-                </ul>
-            </div>
+            {mostLiked.length > 0
+                ? (<>
+                    <div className="d-flex justify-content-center mt-5 mb-3">
+                        <p>Most liked songs:</p>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        {mostLiked.map(x => <SongCard key={x._id} song={x} />)}
+                    </div>
+                </>
+                )
+                : <div className="d-flex justify-content-center mt-5 mb-3">
+                    <p>There are no songs!</p>
+                </div>
+            }
         </div>
+
     )
 }
 

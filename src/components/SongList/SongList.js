@@ -20,7 +20,9 @@ const SongList = () => {
                         {songs.map(x => <SongCard key={x._id} song={x} />)}
                     </div>
                 )
-                : <p className="no-pets">No songs in database!</p>
+                : <div className="d-flex justify-content-center">
+                    <p className="no-pets">No songs in database!</p>
+                </div>
             }
         </div>
     );

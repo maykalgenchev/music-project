@@ -146,10 +146,10 @@ const Details = () => {
 
                     </div>
                     <div className="relative-bottom m-3">
-                        <div className="d-flex justify-content-center">
-                            <h3>Description:</h3>
+                        <div>
+                            <h3 className="d-flex justify-content-center">Description:</h3>
+                            <p className="d-flex justify-content-center">{song.description}</p>
                         </div>
-                        <p>{song.description}</p>
                     </div>
                 </div>
 
