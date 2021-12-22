@@ -98,7 +98,7 @@ const Details = () => {
 
     const likedButtons = (
         <>
-            <div className="position-absolute top-75 start-40">
+            <div className="position-relative top-75 start-40">
 
 
                 <Link className="btn btn-primary mx-2" to="/likes" onClick={likeHandler}>Like</Link>
@@ -112,7 +112,7 @@ const Details = () => {
     const dislikedButtons = (
         <>
 
-            <div className="position-absolute top-75 start-40">
+            <div className="position-relative top-75 start-40">
 
                 <Link className="btn btn-primary disabled mx-2 " to="/likes" onClick={likeHandler}>Like</Link>
                 <Link className="btn btn-danger mx-2" to="/likes" onClick={dislikeHandler}>Dislike</Link>
@@ -127,10 +127,11 @@ const Details = () => {
             <DeleteConfirm show={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} onSave={deleteHandler} />
             <section id="details-page" className="d-flex justify-content-center ">
                 <div>
-                    <h3>Name: {song.name}</h3>
-                    <p>Type: {song.type}</p>
-                    <p><img src={song.imageUrl} alt="Invalid imageUrl" /></p>
-
+                    <div>
+                        <h3 className="d-flex justify-content-center">Name: {song.name}</h3>
+                        <p className="d-flex justify-content-center">Type: {song.type}</p>
+                        <p className="d-flex justify-content-center"><img src={song.imageUrl} alt="Invalid imageUrl" /></p>
+                    </div>
                     <div className="d-flex justify-content-center my-3">
                         <span id="total-likes">Likes: {likesCount} </span>
                     </div>
@@ -143,16 +144,13 @@ const Details = () => {
                         )}
 
 
-                        <div className="my-2 position-absolute top-100 start-40">
-                            <div className="d-flex justify-content-center">
-                                <h3>Description:</h3>
-                            </div>
-                            <p>{song.description}</p>
-                        </div>
-
                     </div>
-
-
+                    <div className="relative-bottom m-3">
+                        <div className="d-flex justify-content-center">
+                            <h3>Description:</h3>
+                        </div>
+                        <p>{song.description}</p>
+                    </div>
                 </div>
 
             </section>
