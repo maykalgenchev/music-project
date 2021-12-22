@@ -50,8 +50,8 @@ function App() {
           </main>
 
           <footer>
-            <div className="d-flex justify-content-center border-top fixed-bottom">
-              <p>@SongWorld</p>
+            <div className="container text-center">
+              <p>Copyright &copy;SongWorld</p>
             </div>
           </footer>
         </div>
