@@ -17,13 +17,16 @@ const LikedSongs = () => {
                 console.log("Result: ", result)
                 setSongs(result.filter(song => song.likes.includes(user._id)))
             })
-    }, []);
+    }, [user]);
 
     return (
         <>
-            <ul>
-                {songs.map(x => <SongCard key={x._id} song={x} />)}
-            </ul>
+            <div className="card-deck">
+                <div className="row d-flex justify-content-center">
+                    {songs.map(x => <SongCard key={x._id} song={x} />)}
+
+                </div>
+            </div>
         </>
     )
 

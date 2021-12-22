@@ -19,9 +19,16 @@ const MySongs = () => {
 
 
     return (
-        <ul className="d-inline-flex">
-            {songs.filter(x => x._ownerId === user._id).map(x => <SongCard key={x._id} song={x} />)}
-        </ul>
+        <>
+
+            <div className="card-deck">
+                <div className="row d-flex justify-content-center">
+                    {songs.filter(x => x._ownerId === user._id).map(x => <SongCard key={x._id} song={x} />)}
+
+
+                </div>
+            </div>
+        </>
     )
 
 }

@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import * as songService from '../../services/songService';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useNotificationContext, types } from '../../contexts/NotificationContext';
 
 const Details = () => {
     const navigate = useNavigate();
@@ -10,6 +11,8 @@ const Details = () => {
     const [songLiked, setSongLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(0);
     const { songId } = useParams();
+    const { addNotification } = useNotificationContext();
+
 
 
     useEffect(() => {
@@ -25,7 +28,7 @@ const Details = () => {
                 }
             });
 
-    }, []);
+    }, [songId, user]);
 
 
     const deleteHandler = (e) => {
@@ -49,6 +52,8 @@ const Details = () => {
         setLikesCount(song.likes.length);
 
         setSongLiked(true);
+        addNotification(`You liked ${song.name}! Now you can easy find it in Liked songs.`, types.info);
+
     }
 
     const dislikeHandler = (e) => {
@@ -68,6 +73,8 @@ const Details = () => {
         setLikesCount(song.likes.length);
 
         setSongLiked(false);
+        addNotification(`You disliked ${song.name}!`, types.warn);
+
 
     }
 
@@ -80,11 +87,9 @@ const Details = () => {
 
     const likedButtons = (
         <>
-            <div>
-                <p>You like this song?</p>
+            <div className="position-absolute top-75 start-40">
 
-            </div>
-            <div>
+
                 <Link className="btn btn-primary mx-2" to="/likes" onClick={likeHandler}>Like</Link>
                 <Link className="btn btn-danger disabled mx-2" to="/likes" onClick={dislikeHandler}>Dislike</Link>
             </div>
@@ -95,11 +100,10 @@ const Details = () => {
 
     const dislikedButtons = (
         <>
-            <div>
-                <p>You have already liked this song</p>
-            </div>
-            <div>
-                <Link className="btn btn-primary disabled mx-2" to="/likes" onClick={likeHandler}>Like</Link>
+
+            <div className="position-absolute top-75 start-40">
+
+                <Link className="btn btn-primary disabled mx-2 " to="/likes" onClick={likeHandler}>Like</Link>
                 <Link className="btn btn-danger mx-2" to="/likes" onClick={dislikeHandler}>Dislike</Link>
             </div>
 
@@ -107,9 +111,8 @@ const Details = () => {
         </>
     )
 
-
     return (
-        <section id="details-page" className="d-flex justify-content-center">
+        <section id="details-page" className="d-flex justify-content-center ">
             <div>
                 <h3>Name: {song.name}</h3>
                 <p>Type: {song.type}</p>
@@ -127,14 +130,16 @@ const Details = () => {
                     )}
 
 
-
+                    <div className="my-2 position-absolute top-100 start-40">
+                        <div className="d-flex justify-content-center">
+                            <h3>Description:</h3>
+                        </div>
+                        <p>{song.description}</p>
+                    </div>
 
                 </div>
 
-                <div className="my-2">
-                    <h3>Description:</h3>
-                    <p>{song.description}</p>
-                </div>
+
             </div>
 
         </section>

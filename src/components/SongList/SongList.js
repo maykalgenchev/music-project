@@ -13,12 +13,12 @@ const SongList = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="card-deck">
             {songs.length > 0
                 ? (
-                    <ul className="d-flex flex-nowrap">
+                    <div className="row d-flex justify-content-center">
                         {songs.map(x => <SongCard key={x._id} song={x} />)}
-                    </ul>
+                    </div>
                 )
                 : <p className="no-pets">No songs in database!</p>
             }
